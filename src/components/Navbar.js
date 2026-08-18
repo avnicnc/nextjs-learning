@@ -28,9 +28,7 @@ export default function Navbar() {
           <Link href="/" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Home</Link>
           <Link href="/about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</Link>
           <Link href="/projects" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Projects</Link>
-          <button className="px-6 py-2.5 bg-white text-gray-900 text-sm font-bold rounded-full hover:bg-gray-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] transform hover:-translate-y-0.5">
-            Let's Talk
-          </button>
+
         </div>
         
         {/* Mobile Menu Icon */}
