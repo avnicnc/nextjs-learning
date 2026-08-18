@@ -1,0 +1,17 @@
+.bannerSection {
+  background-color: #000;
+  color: #fff;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.bannerSection h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.contentSection {
+  padding: 80px 20px;
+  text-align: center;
+  border-bottom: 1px solid #eaeaea;
+}
