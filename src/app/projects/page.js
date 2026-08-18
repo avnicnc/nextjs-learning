@@ -21,7 +21,7 @@ export default async function Projects() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>My Projects</h1>
-      <p className={styles.subtitle}>Here are some of the cool things I have built.we built</p>
+      <p className={styles.subtitle}>i BUILD THIS PROJECTS.</p>
       <ul style={{ marginTop: '2rem', listStyle: 'none', padding: 0, width: '100%', maxWidth: '600px' }}>
 
           
