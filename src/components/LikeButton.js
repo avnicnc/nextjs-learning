@@ -7,19 +7,15 @@ export default function LikeButton() {
 
   return (
     <button 
-      onClick={() => setLikes(likes + 1)}
-      style={{
-        marginTop: '1rem',
-        padding: '0.5rem 1rem',
-        backgroundColor: '#3b82f6',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-        fontWeight: 'bold'
+      onClick={(e) => {
+        e.preventDefault(); // Prevent link navigation when clicking like inside the link area
+        setLikes(likes + 1);
       }}
+      className="mt-6 flex items-center gap-2 px-5 py-2.5 bg-purple-50 text-purple-600 border border-purple-100 rounded-full hover:bg-purple-100 hover:scale-105 transition-all duration-300 font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500/50"
     >
-      ❤️ Like ({likes})
+      <span className="text-lg">❤️</span>
+      <span>Like</span>
+      <span className="bg-purple-200/50 px-2 py-0.5 rounded-full text-sm font-bold ml-1">{likes}</span>
     </button>
   );
 }
