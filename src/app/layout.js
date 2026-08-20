@@ -26,7 +26,7 @@ export default async function RootLayout({ children }) {
   let footerCopyright = null;
   
   try {
-    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "http://wpnext.local/wp-json/wp/v2";
+    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://living-governor.localsite.io/wp-json/wp/v2";
     const baseUrl = wpApiUrl.replace('/wp/v2', '');
     
     // 1. Fetch from the custom theme endpoint for the menu
@@ -40,7 +40,7 @@ export default async function RootLayout({ children }) {
         menuItems = menuData.map(item => ({
           id: item.id,
           title: item.title,
-          url: item.url.replace('http://wpnext.local', '').replace(/\/$/, '') || '/',
+          url: item.url.replace('https://living-governor.localsite.io', '').replace(/\/$/, '') || '/',
         }));
       }
     }

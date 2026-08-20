@@ -3,7 +3,7 @@ export default async function About() {
   let acf = null;
 
   try {
-    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "http://wpnext.local/wp-json/wp/v2";
+    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://living-governor.localsite.io/wp-json/wp/v2";
     const res = await fetch(`${wpApiUrl}/pages?slug=about&_embed`, {
       next: { revalidate: 60 }
     });
