@@ -11,7 +11,7 @@ export default async function ProjectsGallery({ title, subtitle, button }) {
   // Fetch projects from WordPress default posts
   let projectsList = [];
   try {
-    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://paragraph:animated@living-governor.localsite.io/wp-json/wp/v2";
+    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "http://wpnext.local/wp-json/wp/v2";
     // Fetch posts with embedded media and terms
     const res = await fetch(`${wpApiUrl}/posts?_embed&per_page=6`, {
       next: { revalidate: 60 }
