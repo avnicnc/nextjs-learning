@@ -6,7 +6,7 @@ import Link from 'next/link';
 // Fetch projects from WordPress
 async function getProjects() {
   try {
-    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://living-governor.localsite.io/wp-json/wp/v2";
+    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://paragraph:animated@living-governor.localsite.io/wp-json/wp/v2";
     // Using the posts endpoint just like the gallery, fetching all published posts
     const res = await fetch(`${wpApiUrl}/posts?_embed&per_page=100`, {
       next: { revalidate: 60 }
@@ -29,7 +29,7 @@ function stripHtml(html) {
 // Fetch Theme Settings for the Portfolio header
 async function getThemeSettings() {
   try {
-    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://living-governor.localsite.io/wp-json";
+    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://paragraph:animated@living-governor.localsite.io/wp-json";
     // This uses the default ACF REST API endpoint for the options page
     const res = await fetch("${wpApiUrl}/acf/v3/options/options", {
       next: { revalidate: 60 }
@@ -50,7 +50,7 @@ export default async function Projects() {
   let acf = null;
 
   try {
-    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://living-governor.localsite.io/wp-json/wp/v2";
+    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://paragraph:animated@living-governor.localsite.io/wp-json/wp/v2";
     const res = await fetch(`${wpApiUrl}/pages?slug=projects&_embed`, {
       next: { revalidate: 60 }
     });

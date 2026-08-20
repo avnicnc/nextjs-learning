@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 async function getProject(slug) {
   try {
-    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://living-governor.localsite.io/wp-json/wp/v2";
+    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://paragraph:animated@living-governor.localsite.io/wp-json/wp/v2";
     const res = await fetch(`${wpApiUrl}/posts?slug=${slug}&_embed`, {
       next: { revalidate: 60 }
     });
