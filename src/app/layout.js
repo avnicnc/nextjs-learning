@@ -19,18 +19,62 @@ export const metadata = {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // Fetch menu items and theme options from WordPress
+  let menuItems = [];
+  let headerLogoUrl = null;
+  let footerCopyright = null;
+  
+  try {
+    const wpApiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "http://wpnext.local/wp-json/wp/v2";
+    const baseUrl = wpApiUrl.replace('/wp/v2', '');
+    
+    // 1. Fetch from the custom theme endpoint for the menu
+    const menuRes = await fetch(`${baseUrl}/twentytwentyfive/v1/menu/primary_menu`, {
+      next: { revalidate: 60 }
+    });
+    
+    if (menuRes.ok) {
+      const menuData = await menuRes.json();
+      if (Array.isArray(menuData)) {
+        menuItems = menuData.map(item => ({
+          id: item.id,
+          title: item.title,
+          url: item.url.replace('http://wpnext.local', '').replace(/\/$/, '') || '/',
+        }));
+      }
+    }
+
+    // 2. Fetch Theme Settings (Custom Endpoint) 
+    // This points to the custom /twentytwentyfive/v1/theme-settings endpoint
+    const optionsRes = await fetch(`${baseUrl}/twentytwentyfive/v1/theme-settings`, {
+      next: { revalidate: 60 }
+    });
+    
+    if (optionsRes.ok) {
+      const optionsData = await optionsRes.json();
+      if (optionsData?.header_logo) {
+        headerLogoUrl = optionsData.header_logo;
+      }
+      if (optionsData?.footer_copyright) {
+        footerCopyright = optionsData.footer_copyright;
+      }
+    }
+  } catch (error) {
+    console.error("Failed to fetch header data:", error);
+  }
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-screen flex flex-col">
-        <Navbar />
+        <Navbar menuItems={menuItems} headerLogo={headerLogoUrl} />
         <main className="flex-grow">
           {children}
         </main>
-        <Footer />
+        <Footer copyrightText={footerCopyright} />
       </body>
     </html>
   );
